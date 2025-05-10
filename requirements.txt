@@ -1,0 +1,5 @@
+streamlit
+PyPDF2
+torch 
+transformers 
+python-docx
