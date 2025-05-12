@@ -44,7 +44,7 @@ if uploaded_file is not None:
     # Process PDF
     text_lines = extract_text_from_pdf(BytesIO(uploaded_file.read()))
     if st.button("Classify"):
-        res = requests.post("https://halhadad-resume-labeling-space.hf.space/predict", json={"text": text_lines})
+        res = requests.post(API_URL = st.secrets["API_URL"], json={"text": text_lines})
         if res.ok:
             display_results(res.json(), text_lines)
             st.success("Prediction successful")
