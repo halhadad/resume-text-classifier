@@ -8,6 +8,7 @@ router = APIRouter()
 class BatchInput(BaseModel):
     text: List[str]
 
+
 @router.post("/predict")
 def predict(input: BatchInput):
     labels = [classify_text(text) for text in input.text]
