@@ -2,3 +2,5 @@ torch
 transformers 
 uvicorn
 fastapi
+pymongo
+python-dotenv

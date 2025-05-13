@@ -21,7 +21,7 @@ jobs:
 
       - name: Push backend/ to Hugging Face
         env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_TOKEN: ${{secrets.HF_TOKEN}}
         run: |
           git remote add hf https://halhadad:${HF_TOKEN}@huggingface.co/spaces/halhadad/resume-labeling-space
           git subtree split --prefix backend -b backend-deploy
