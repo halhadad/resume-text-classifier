@@ -24,4 +24,5 @@ jobs:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           git remote add hf https://halhadad:${HF_TOKEN}@huggingface.co/spaces/halhadad/resume-labeling-space
-          git subtree push --prefix backend hf main
+          git subtree split --prefix backend -b backend-deploy
+          git push -f hf backend-deploy:main
