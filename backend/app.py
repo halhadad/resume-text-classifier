@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from api import predict
+from .api import predict
 
 app = FastAPI(title="Resume Classifier API")
 

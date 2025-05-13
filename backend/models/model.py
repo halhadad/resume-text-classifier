@@ -28,7 +28,7 @@ def load_model_manually(model_path):
 # Load your pre-trained model and tokenizer
 def load_model():
     # Update this path to your model directory
-    model_path = "./models/model_79"  
+    model_path = "backend/models/model_79"  
     return load_model_manually(model_path)
 
 model, tokenizer = load_model()
