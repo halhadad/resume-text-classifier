@@ -3,7 +3,7 @@ from typing import List
 from pydantic import BaseModel
 from pymongo import MongoClient
 from hashlib import sha256
-from models.model import classify_text
+from ..models.model import classify_text
 import os
 from dotenv import load_dotenv
 
