@@ -1,5 +1,6 @@
 .venv
 .env
 model_79
+model_84
 __pycache__
 secrets.toml

@@ -2,6 +2,7 @@ from transformers import AutoModelForSequenceClassification, AutoTokenizer
 import torch
 import torch.nn.functional as F
 from io import BytesIO
+import os
 
 
 def load_model_manually(model_path):
@@ -26,11 +27,15 @@ def load_model_manually(model_path):
 
 
 # Load your pre-trained model and tokenizer
+# def load_model():
+#     # Update this path to your model directory
+#     model_path = "./model_84"  
+#     return load_model_manually(model_path)
 def load_model():
-    # Update this path to your model directory
-    model_path = "./models/model_79"  
+    # Get absolute path to model directory
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    model_path = os.path.join(current_dir, "model_84")
     return load_model_manually(model_path)
-
 model, tokenizer = load_model()
 
 def predict_label(text, model, tokenizer):
