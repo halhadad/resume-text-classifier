@@ -19,6 +19,18 @@ router = APIRouter()
 class BatchInput(BaseModel):
     text: List[str]
 
+# Mapping the labels
+label_map = {
+    "Edu": "Education",
+    "Exp": "Experience",
+    "Skill": "Skills",
+    "Obj": "Objective",
+    "QC": "Qualifications and Certificates",
+    "PI": "Personal Information",
+    "Sum": "Summary"
+}
+    
+
 
 @router.post("/predict")
 def predict(input: BatchInput):
@@ -28,6 +40,8 @@ def predict(input: BatchInput):
     for text in input.text:
         label = classify_text(text)
         labels.append(label)
+        mapped_label = label_map[label]
+    mapped_labels = [label_map[label] for label in labels]        
 
     #     # Create a hash of the text
     #     input_hash = sha256(text.encode()).hexdigest()
@@ -45,5 +59,5 @@ def predict(input: BatchInput):
     # # Bulk insert all new (unique) entries
     # if new_entries:
     #     collection.insert_many(new_entries)
-
-    return {"labels": labels}
+    # print(mapped_labels, labels)
+    return {"labels": mapped_labels}

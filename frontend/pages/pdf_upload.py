@@ -3,6 +3,26 @@ import PyPDF2
 import requests
 from io import BytesIO
 
+st.set_page_config(page_icon="https://i.ibb.co/j9pDZwkb/resumate-logo.png")
+st.logo(
+    "https://i.ibb.co/j9pDZwkb/resumate-logo.png",
+    link="https://i.ibb.co/j9pDZwkb/resumate-logo.png",
+    size="large",
+)
+st.sidebar.markdown("<div style='height:45vh;'></div>", unsafe_allow_html=True)
+st.sidebar.markdown("""
+<hr style="margin-top: 0;">
+<div style="display: flex; align-items: center; gap: 10px;">
+    <img src="https://i.ibb.co/j9pDZwkb/resumate-logo.png" width="25">
+    <span style="font-size: 16px; font-weight: 600;">Resumate</span>
+</div>
+""", unsafe_allow_html=True)
+st.sidebar.markdown("""
+<div style="display: flex; align-items: center; gap: 10px;">
+    <span style="font-size: 10px; font-weight: 300;">Made by github.com/halhadad</span>
+</div>
+""", unsafe_allow_html=True)
+
 def extract_text_from_pdf(uploaded_file):
     text = []
     reader = PyPDF2.PdfReader(uploaded_file)
@@ -25,14 +45,14 @@ def display_results(results, text_lines):
                 "Category",
                 help="The predicted category",
                 width="medium",
-                options=["Exp", "Edu", "PI", "Obj", "Sum", "QC", "Skill"]
+                options=["Experience", "Education", "Personal Information", "Objective", "Summary", "Qualifications and Certificates", "Skills"]
             )
         },
         use_container_width=True,
         hide_index=True
     )
 
-st.title("PDF Resume Classifier")
+st.title("PDF Upload")
 uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
 
 if uploaded_file is not None:
