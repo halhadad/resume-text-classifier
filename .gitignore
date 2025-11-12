@@ -2,5 +2,6 @@
 .env
 model_79
 model_84
+model_90
 __pycache__
 secrets.toml
