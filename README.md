@@ -1,4 +1,3 @@
-# Resumate
 ---
 title: Resumate Resume Text Classifier
 emoji: 📄
@@ -9,6 +8,7 @@ sdk_version: "1.29.0"  # replace with your Streamlit version
 app_file: ui/Overview.py   # path to your main app file
 pinned: false
 ---
+# Resumate
 
 <div align="center">
 
