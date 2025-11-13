@@ -1,7 +1,8 @@
 import streamlit as st
-import PyPDF2
-import requests
-from io import BytesIO
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
+from inference.model_inference import classify_lines
 
 st.set_page_config(page_icon="https://i.ibb.co/j9pDZwkb/resumate-logo.png")
 st.logo(
@@ -23,44 +24,49 @@ st.sidebar.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-def extract_text_from_pdf(uploaded_file):
-    text = []
-    reader = PyPDF2.PdfReader(uploaded_file)
-    for page in reader.pages:
-        page_text = page.extract_text()
-        if page_text:
-            lines = page_text.split('\n')
-            text += [line.strip() for line in lines if line.strip()]
-    return text
-
-def display_results(results, text_lines):
-    results = [{"Line Number": i + 1, "Text": text_lines[i], "Label": label} for i, label in enumerate(results["labels"])]
+def display_results(rows):
     st.subheader("Classification Results")
+    table = [
+        {
+            "Line #": i + 1,
+            "Text": r["text"],
+            "Label": r["label"],
+        }
+        for i, r in enumerate(rows)
+    ]
     st.dataframe(
-        data=results,
+        data=table,
         column_config={
-            "Line Number": "Line #",
+            "Line #": "Line #",
             "Text": "Resume Text",
             "Label": st.column_config.SelectboxColumn(
                 "Category",
-                help="The predicted category",
+                help="Predicted category (editable for manual correction)",
                 width="medium",
-                options=["Experience", "Education", "Personal Information", "Objective", "Summary", "Qualifications and Certificates", "Skills"]
-            )
+                options=[
+                    "Experience",
+                    "Education",
+                    "Personal Information",
+                    "Objective",
+                    "Summary",
+                    "Qualifications and Certificates",
+                    "Skills"
+                ]
+            ),
         },
         use_container_width=True,
         hide_index=True
     )
 
-st.title("PDF Upload")
-uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
+st.title("Text Input")
+text_input = st.text_area("Paste your resume text here", height=300)
 
-if uploaded_file is not None:
-    text_lines = extract_text_from_pdf(BytesIO(uploaded_file.read()))
+if text_input:
+    text_lines = [line.strip() for line in text_input.split('\n') if line.strip()]
     if st.button("Classify"):
-        res = requests.post("http://127.0.0.1:8000/predict", json={"text": text_lines})
-        if res.ok:
-            display_results(res.json(), text_lines)
+        rows = classify_lines(text_lines)
+        if rows:
+            display_results(rows)
             st.success("Prediction successful")
         else:
-            st.error("Error during prediction")
+            st.warning("No lines to classify.")
