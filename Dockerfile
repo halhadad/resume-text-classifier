@@ -8,7 +8,8 @@ ENV PATH="/home/user/.local/bin:$PATH" PORT=7860
 
 # Single unified requirements file at repo root
 COPY --chown=user requirements.txt requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --force-reinstall -r requirements.txt
+
 
 # Copy entire repo 
 COPY --chown=user . /app
