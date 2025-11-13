@@ -3,9 +3,8 @@ title: Resumate Resume Text Classifier
 emoji: 📄
 colorFrom: blue
 colorTo: green
-sdk: streamlit
-sdk_version: "1.45.0"  # replace with your Streamlit version
-app_file: ui/Overview.py   # path to your main app file
+sdk: docker
+app_file: Dockerfile   # path to your main app file
 pinned: false
 ---
 # Resumate
