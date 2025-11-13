@@ -1,4 +1,15 @@
 # Resumate
+---
+title: Resumate Resume Text Classifier
+emoji: 📄
+colorFrom: blue
+colorTo: green
+sdk: streamlit
+sdk_version: "1.29.0"  # replace with your Streamlit version
+app_file: ui/Overview.py   # path to your main app file
+pinned: false
+---
+
 <div align="center">
 
 <img src="https://i.postimg.cc/gJgcPvkZ/Chat-GPT-Image-May-8-2025-04-32-36-PM.png" width="150px">
