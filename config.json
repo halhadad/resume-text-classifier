@@ -1,0 +1,5 @@
+{
+    "hf_repo_id": "halhadad/DistilBERT-NLP-Resume-TextClassifer-Lines",
+    "use_local_model": false,
+    "hf_token_env_var": "ttk12_TOKEN"
+}
