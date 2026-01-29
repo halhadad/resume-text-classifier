@@ -23,5 +23,5 @@ jobs:
         env:
           HF_TOKEN: ${{secrets.HF_TOKEN}}
         run: |
-          git remote add hf https://halhadad:${HF_TOKEN}@huggingface.co/spaces/halhadad/resume-labeling-space
+          git remote add hf https://halhadad:${HF_TOKEN}@huggingface.co/spaces/halhadad/resume-labeling-space.git
           git push -f hf HEAD:main
