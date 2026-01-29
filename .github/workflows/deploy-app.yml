@@ -23,7 +23,7 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          git remote add hf https://huggingface.co/spaces/halhadad/resume-labeling-space.git
+          git remote add hf https://huggingface.co/spaces/halhadad/resume-labeling-space
           git config --global credential.helper store
           echo "https://halhadad:${HF_TOKEN}@huggingface.co" > ~/.git-credentials
           git push -f hf HEAD:main
