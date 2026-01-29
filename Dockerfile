@@ -15,4 +15,4 @@ RUN pip install --no-cache-dir --force-reinstall -r requirements.txt
 COPY --chown=user . /app
 
 # Launch Streamlit from root directory
-CMD ["streamlit", "run", "ui/Overview.py", "--server.port", "7860", "--server.headless", "true"]
+CMD ["streamlit", "run", "ui/Overview.py", "--server.port", "7860", "--server.headless", "true", "--server.enableCORS", "false", "--server.enableXsrfProtection", "false"]
